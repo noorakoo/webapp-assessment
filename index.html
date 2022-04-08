@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contacts list</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            :root {
+                --primary-white: white;
+                --primary-dark-grey: rgb(93, 121, 148);
+                --primary-light-grey: rgb(238, 238, 238);
+
+                --primary-font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            .container {
+                width: 70%;
+                align-content: center;
+                margin: auto;
+            }
+
+            h1 {
+                font-family: var(--primary-font-family);
+                color: var(--primary-dark-grey);
+            }
+
+            th {
+                font-size: larger;
+                color: var(--primary-dark-grey);
+            }
+
+            th, td {
+                border: 2px solid var(--primary-white);
+                font-family: var(--primary-font-family);
+                background-color: var(--primary-light-grey);
+                padding: 10px 55px;
+            }
+
+            button {
+                padding: 2px 14px;
+                font-family: var(--primary-font-family);
+            }
+
+            .delbtn {
+                background-color: var(--primary-white);
+                padding: 0px;
+            }
+
+        </style>
+    </head>
+    <body onload="mouse()">
+        <div class="container">
+            <h1>Contacts</h1>
+
+            <table id="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th class="delbtn"></th>
+                </tr>
+                <tr>
+                    <td>Noora</td>
+                    <td>+358 45 123 4567</td>
+                    <td>noora@mail.com</td>
+                    <td class="delbtn"><input type="button" value="Delete" onclick="del(this)"></td>
+                </tr>
+                <tr>
+                    <td>Teemu</td>
+                    <td>+358 45 321 6549</td>
+                    <td>teemu@mail.com</td>
+                    <td class="delbtn"><input type="button" value="Delete" onclick="del(this)"></td>
+                </tr>
+                <tr>
+                    <td>Elina</td>
+                    <td>+358 45 789 4561</td>
+                    <td>elina@mail.com</td>
+                    <td class="delbtn"><input type="button" value="Delete" onclick="del(this)"></td>
+                </tr>
+            </table>
+            <br>
+            <input id="name" placeholder="name...">
+            <input id="number" placeholder="number...">
+            <input id="email" placeholder="email...">
+            <button onclick="add()">Add</button>
+        </div>
+
+        <script>
+            function mouse() {
+                document.getElementById("name").focus();
+            }
+
+            function add() {
+                let name = document.getElementById("name").value;
+                let number = document.getElementById("number").value;
+                let email = document.getElementById("email").value;
+                
+                document.getElementById("table").innerHTML += "<tr><td>" + name + "</td><td>" + number + "</td><td>" + email + "</td><td class='delbtn'><input type='button' value='Delete' onclick='del(this)'></td></tr>";
+
+                document.getElementById("name").value = "";
+                document.getElementById("number").value = "";
+                document.getElementById("email").value = "";
+                mouse();
+            }
+
+            function del(r) {
+                let i = r.parentNode.parentNode.rowIndex;
+                document.getElementById("table").deleteRow(i);
+
+                mouse();
+            }
+        </script>
+    </body>
+</html>
